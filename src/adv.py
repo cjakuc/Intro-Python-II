@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +50,40 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+game_on = True
+current_player = Player(rooms=room)
+cardinal_directions = ["north", "east", "south", "west"]
+# Print current room and description
+print(current_player)
+
+while game_on:
+    # Save current location to a variable
+    # location = current_player.getLocation()
+
+    # Print the current room
+    # print(f"The current room is: {location}")
+    # # Print description of current room
+    # print(f"Description: {room[location].getDescription()}")
+
+    # Get user's input
+    user_input = input("What's next? ").lower()
+
+    # If user enters "q", end the game
+    if user_input == "q":
+        game_on = False
+        print("Thanks for playing!")
+        break
+
+    # User enters direction, move direction if possible
+    elif user_input in cardinal_directions:
+        msg = current_player.move(direction=user_input)
+
+        if msg == "Success":
+            # Print current room and description
+            print(current_player)
+        else:
+            print(msg)
+
+    else:
+        print("Command not found. Input 'q' to quit or a cardinal direction to try to move.")
