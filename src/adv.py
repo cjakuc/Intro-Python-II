@@ -100,4 +100,4 @@ while game_on:
         print(f"Your inventory: {[item.name for item in current_player.items]}")
 
     else:
-        print("Command not found. Input 'q' to quit or a cardinal direction to try to move.")
+        print("Command not found. Input 'q' to quit or a cardinal direction (N,E,S,W) to try to move. Or input get, take, drop ITEM_NAMES.")
