@@ -6,8 +6,8 @@ from item import Item
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
-    def __init__ (self, rooms:dict):
-        self.all_rooms = rooms
+    def __init__ (self, name, rooms:dict):
+        self.name: str = name
         self.location: Room = list(rooms.values())[0]
         self.items: list = [Item(name="Flashlight")]
 
@@ -49,7 +49,7 @@ class Player:
             if name in item_names:
                 item_index = item_names.index(name)
                 self.location.items.append(items_on_player.pop(item_index))
-                message = message + f"{name} has been dropped! Your inventory has: {items_on_player}"
+                message = message + f"{name} has been dropped! Your inventory has: {[item.name for item in items_on_player]}"
             else:
-                message = message + f"{name} is not in your inventory. Your inventory has: {items_on_player}"
+                message = message + f"{name} is not in your inventory. Your inventory has: {[item.name for item in items_on_player]}"
         return message

@@ -59,8 +59,9 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 
 game_on = True
-current_player = Player(rooms=room)
-cardinal_directions = ["north", "east", "south", "west"]
+player_name = input("What is your name? ")
+current_player = Player(name=player_name, rooms=room)
+cardinal_directions = ["n", "e", "s", "w"]
 # Print current room and description
 print(current_player)
 
@@ -85,15 +86,18 @@ while game_on:
         else:
             print(msg)
 
-    elif split_input[0].lower() == "get":
+    elif (split_input[0].lower() == "get") or (split_input[0].lower() == "take"):
         get_items = split_input[1:]
         msg = current_player.getItem(get_items)
         print(msg)
 
-    elif split_input[0].lower() == "drop":
+    elif (split_input[0].lower() == "drop"):
         drop_items = split_input[1:]
         msg = current_player.dropItem(drop_items)
         print(msg)
+
+    elif (split_input[0].lower() == "i") or (split_input[0].lower() == "inventory"):
+        print(f"Your inventory: {[item.name for item in current_player.items]}")
 
     else:
         print("Command not found. Input 'q' to quit or a cardinal direction to try to move.")
