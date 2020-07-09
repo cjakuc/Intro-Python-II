@@ -19,15 +19,6 @@ class Room:
     def getDescription(self):
         return self.description
 
-    # def n_to(self, new_room):
-    #     self.north = new_room
-    # def e_to(self, new_room):
-    #     self.east = new_room
-    # def s_to(self, new_room):
-    #     self.south = new_room
-    # def w_to(self, new_room):
-    #     self.west = new_room
-
     def check_move(self, direction: str):
         if direction == "north":
             return self.n_to
