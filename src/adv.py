@@ -5,21 +5,28 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     ["Stone", "Stick"]),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'foyer':    Room("Foyer",
+                     """Dim light filters in from the south. Dusty
+                     passages run north and east.""",
+                     ["Candlestick", "Clock"]),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+    'overlook': Room("Grand Overlook",
+                     """A steep cliff appears before you, falling
+                     into the darkness. Ahead to the north, a light flickers in
+                     the distance, but there is no way across the chasm.""",
+                     ["Rope", "Gravel"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+                     to north. The smell of gold permeates the air.""",
+                     ["Dirt", "Shoe"]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+                     chamber! Sadly, it has already been completely emptied by
+                     earlier adventurers. The only exit is to the south.""",
+                     ["Broken Glass", "Torch"]),
 }
 
 
@@ -58,16 +65,9 @@ cardinal_directions = ["north", "east", "south", "west"]
 print(current_player)
 
 while game_on:
-    # Save current location to a variable
-    # location = current_player.getLocation()
-
-    # Print the current room
-    # print(f"The current room is: {location}")
-    # # Print description of current room
-    # print(f"Description: {room[location].getDescription()}")
-
     # Get user's input
     user_input = input("What's next? ").lower()
+    split_input = user_input.split(" ")
 
     # If user enters "q", end the game
     if user_input == "q":
@@ -84,6 +84,16 @@ while game_on:
             print(current_player)
         else:
             print(msg)
+
+    elif split_input[0].lower() == "get":
+        get_items = split_input[1:]
+        msg = current_player.getItem(get_items)
+        print(msg)
+
+    elif split_input[0].lower() == "drop":
+        drop_items = split_input[1:]
+        msg = current_player.dropItem(drop_items)
+        print(msg)
 
     else:
         print("Command not found. Input 'q' to quit or a cardinal direction to try to move.")
